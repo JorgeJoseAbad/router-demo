@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+
+.page img{
+  width:200px;
+}
+
+.App-header a{
+  color:white;
+  padding: 5px;
+}
