@@ -1,57 +1,41 @@
 import React, {Component} from 'react'
-import axios from 'axios';
-
-
-const loadPokemon = (pokemonID) => {
-    let url = `https://pokeapi.co/api/v2/pokemon/${pokemonID}/`;
-    return axios.get(url).then(res => {
-        return {
-            name:res.data.name,
-            img: res.data.sprites.front_default
-        };
-    });
-}
-
+import {connect} from 'react-redux';
+import {deletePokemon} from '../redux/actions'
 
 const BorderRadiusImg = ({img,name}) => (
-    <div style={{borderRadius:10, background:'red', width:100}}>
-        <img src={img} alt={name}/>
+    <div style={{borderRadius:10, background:'red'}}>
+        <img src={img} width={100} alt={name}/>
     </div>
 )
 
-class Pokemon extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            pokemon: null
-        }
+const Pokemon = ({pokemon}) => {
+    if(!pokemon){
+        return <div>Loading....</div>;
     }
-    componentDidMount(){
-        loadPokemon(this.props.id).then( data => this.setState({pokemon:data}));
-    }
-    render(){
-        const {pokemon} = this.state
 
-        if(!pokemon){
-            return <div>Loading....</div>;
-        }
-
-        return (
+    return (
         <div>
             <h2>{pokemon.name}</h2>
             <BorderRadiusImg img={pokemon.img} />
         </div>
-        )
-    }
+    )
 }
 
-export const PokePage = () => (
+ const _PokePage = ({pokemons, dispatch}) => (
     <div>
-        <Pokemon id={25}/>
-        <Pokemon id={25}/>
-        <Pokemon id={151}/>
+        {pokemons.map(p => 
+        <div style={{border:'1px solid blue'}}>
+            <Pokemon pokemon={p}/>
+            <button onClick={()=> dispatch(deletePokemon(p.name))}>Delete me</button>
+        </div> )}
     </div>
 )
+
+export const PokePage =  connect(state => {
+    return {
+        pokemons: state.pokemons
+    }
+})(_PokePage )
 
 
 

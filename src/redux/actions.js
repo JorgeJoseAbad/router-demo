@@ -1,6 +1,7 @@
-export const getPokemon = () => {
+
+export const deletePokemon = (id) => {
     return {
-        type: 'GET_POKEMON',
-        text: 'Build my first Redux app'
+        type: 'DELETE_POKEMON',
+        id
       }
 }
