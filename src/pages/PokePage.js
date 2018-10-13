@@ -1,21 +1,21 @@
 import React, {Component} from 'react'
 import axios from 'axios';
 
-
 const loadPokemon = (pokemonID) => {
     let url = `https://pokeapi.co/api/v2/pokemon/${pokemonID}/`;
     return axios.get(url).then(res => {
         return {
             name:res.data.name,
-            img: res.data.sprites.front_default
+            img1: res.data.sprites.front_default,
+            img2: res.data.sprites.back_default
         };
     });
 }
 
-
-const BorderRadiusImg = ({img,name}) => (
-    <div style={{borderRadius:10, background:'red', width:100}}>
-        <img src={img} alt={name}/>
+const BorderRadiusImg = ({img1,img2,name}) => (
+    <div style={{borderRadius:10, background:'red', width:100, marginLeft:300}}>
+      <img src={img1} alt={name}/>
+      <img src={img2} alt={name}/>
     </div>
 )
 
@@ -38,8 +38,8 @@ class Pokemon extends Component {
 
         return (
         <div>
-            <h2>{pokemon.name}</h2>
-            <BorderRadiusImg img={pokemon.img} />
+          <h2>{pokemon.name}</h2>
+          <BorderRadiusImg img1={pokemon.img1} img2={pokemon.img2} name={pokemon.name}/>
         </div>
         )
     }
@@ -47,17 +47,9 @@ class Pokemon extends Component {
 
 export const PokePage = () => (
     <div>
-        <Pokemon id={25}/>
-        <Pokemon id={25}/>
-        <Pokemon id={151}/>
+      <Pokemon id={25}/>
+      <Pokemon id={25}/>
+      <Pokemon id={151}/>
+      <Pokemon id={99}/>
     </div>
 )
-
-
-
-
-
-
-
-
-
