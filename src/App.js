@@ -27,9 +27,13 @@ class App extends Component {
             <Link to="/homer/marc">Pagina de Marc</Link>
             <Link to="/homer/pepe">Pagina de Pepe</Link>
             <Link to="/poke">Poke List</Link>
-
           </header>
-          <div>
+          <div
+            className="classRoutes"
+            style={{
+              backgroundColor:'hsla(33, 29%, 70%, 1)',
+              margin:20
+            }}>
             <Routes />
           </div>
         </div>

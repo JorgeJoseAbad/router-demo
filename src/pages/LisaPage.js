@@ -8,7 +8,9 @@ const CallMeBack = ({callMe}) => {
         width:50,
         height:50,
         background:'blue',
-        marginLeft:400,
+
+        margin: '0 auto',
+        marginBottom: 10,
         align:'center'
       }}
         onClick={callMe}>Libera Lisa
